@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useField } from './hooks';
 import {
 	BrowserRouter as Router,
 	Routes,
@@ -43,6 +44,7 @@ const AnecdoteList = ({ anecdotes }) => (
 const Anecdote = ({ anecdotes }) => {
 	const id = +useParams().id;
 	const anecdote = anecdotes.find((a) => a.id === id);
+	console.log(anecdote);
 
 	return (
 		<div>
@@ -91,7 +93,7 @@ const Footer = () => (
 );
 
 const CreateNew = ({ props }) => {
-	const [content, setContent] = useState('');
+	const content = useField('content');
 	const [author, setAuthor] = useState('');
 	const [info, setInfo] = useState('');
 
@@ -100,13 +102,13 @@ const CreateNew = ({ props }) => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		props.addNew({
-			content,
+			content: content.value,
 			author,
 			info,
 			votes: 0,
 		});
 		navigate('/');
-		props.createNotification(content);
+		props.createNotification(content.value);
 		setTimeout(() => props.createNotification(''), 5000);
 	};
 
@@ -116,11 +118,7 @@ const CreateNew = ({ props }) => {
 			<form onSubmit={handleSubmit}>
 				<div>
 					content
-					<input
-						name='content'
-						value={content}
-						onChange={(e) => setContent(e.target.value)}
-					/>
+					<input {...content} />
 				</div>
 				<div>
 					author
