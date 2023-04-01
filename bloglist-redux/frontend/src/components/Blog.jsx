@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { deleteBlog } from '../reducers/blogReducer';
 
-const Blog = ({ blog, handleUpdate, handleDelete, user }) => {
+const Blog = ({ blog, handleUpdate, user }) => {
+	const dispatch = useDispatch();
+
 	const blogStyle = {
 		paddingTop: 10,
 		paddingLeft: 2,
@@ -30,15 +34,25 @@ const Blog = ({ blog, handleUpdate, handleDelete, user }) => {
 	const toggleExpand = () => {
 		setExpand(!expand);
 	};
+
+	const removeBlog = (blog) => {
+		if (
+			window.confirm(
+				`Are you sure you want to delete ${blog.title} by ${blog.author}`
+			)
+		)
+			dispatch(deleteBlog(blog.id));
+	};
 	return (
-		<div
-			className='blog'
-			style={blogStyle}>
-			<div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+		<div className='blog' style={blogStyle}>
+			<div
+				style={{
+					display: 'flex',
+					justifyContent: 'space-between',
+					alignItems: 'center',
+				}}>
 				{blog.title} by {blog.author}
-				<button
-					type='button'
-					onClick={toggleExpand}>
+				<button type='button' onClick={toggleExpand}>
 					{expand ? 'hide' : 'view'}
 				</button>
 			</div>
@@ -47,9 +61,7 @@ const Blog = ({ blog, handleUpdate, handleDelete, user }) => {
 					{blog.url}
 					<br />
 					Likes: {likes}{' '}
-					<button
-						type='button'
-						onClick={addLikes}>
+					<button type='button' onClick={addLikes}>
 						like!
 					</button>
 					<br />
@@ -59,7 +71,7 @@ const Blog = ({ blog, handleUpdate, handleDelete, user }) => {
 						<button
 							type='button'
 							className='remove'
-							onClick={() => handleDelete(blog.id, blog)}>
+							onClick={() => removeBlog(blog)}>
 							remove
 						</button>
 					) : (

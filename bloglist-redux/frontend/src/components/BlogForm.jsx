@@ -1,48 +1,54 @@
-import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addBlog } from '../reducers/blogReducer';
+import { addNotificaton } from '../reducers/notificationReducer';
 
-const BlogForm = ({ handleCreate }) => {
-	const [title, setTitle] = useState('');
-	const [author, setAuthor] = useState('');
-	const [url, setUrl] = useState('');
+const BlogForm = () => {
+	const dispatch = useDispatch();
 
-	const addBlog = (event) => {
+	const createBlog = (event) => {
 		event.preventDefault();
-		handleCreate({
-			title,
-			author,
-			url,
-		});
-		setTitle('');
-		setAuthor('');
-		setUrl('');
+		const title = event.target.title.value;
+		const author = event.target.author.value;
+		const url = event.target.url.value;
+		dispatch(
+			addBlog({
+				title,
+				author,
+				url,
+			})
+		);
+		dispatch(addNotificaton(`You added "${title}"`, 5));
 	};
 	return (
-		<form onSubmit={addBlog}>
+		<form onSubmit={createBlog}>
 			<div>
 				Title
 				<input
 					className='title'
+					name='title'
 					type='text'
-					value={title}
-					onChange={(event) => setTitle(event.target.value)}
+					// value={title}
+					// onChange={(event) => setTitle(event.target.value)}
 				/>
 			</div>
 			<div>
 				Author
 				<input
 					className='author'
+					name='author'
 					type='text'
-					value={author}
-					onChange={(event) => setAuthor(event.target.value)}
+					// value={author}
+					// onChange={(event) => setAuthor(event.target.value)}
 				/>
 			</div>
 			<div>
 				url
 				<input
 					className='url'
+					name='url'
 					type='text'
-					value={url}
-					onChange={(event) => setUrl(event.target.value)}
+					// value={url}
+					// onChange={(event) => setUrl(event.target.value)}
 				/>
 			</div>
 			<button type='submit' className='create'>
