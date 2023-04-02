@@ -18,7 +18,8 @@
 		"react/react-in-jsx-scope": 0,
 		"react/prop-types": 0,
 		"no-plusplus": 0,
-		"no-param-reassign": 0
+		"no-param-reassign": 0,
+		"import/no-extraneous-dependencies": 0
 	},
 	"ignorePatterns": ["**/src/tests/*.jsx", "**/vite.config.js"]
 }
