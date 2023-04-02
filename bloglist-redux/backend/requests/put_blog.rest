@@ -1,11 +1,11 @@
-PUT http://localhost:3003/api/blogs/641685759cb86a19403aac00
+PUT http://localhost:3003/api/blogs/6427cb612fd84af040bb8196
 Content-Type: application/json
 
 {
-    "title": "Test",
-    "author": "Peanut", 
-    "url": "catbeans.com",
+    "title": "asasdasdasd",
+    "author": "asdasd", 
+    "url": "asdasd",
     "likes": 200,
-    "user": "641547a6b9bad6d4b64e91af",
-    "id": "641685759cb86a19403aac00"
+    "user": "6418d6b7cef21c8a0c5a8ddb",
+    "id": "6427cb612fd84af040bb8196"
 }
