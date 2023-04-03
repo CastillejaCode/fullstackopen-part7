@@ -7,13 +7,12 @@ const UserInfo = () => {
   if (!user) return <h2>Loading...</h2>;
 
   return (
-    <div>
-      <h2>blogs</h2>
+    <>
       {user.name} is logged in
       <button type='button' onClick={() => dispatch(logout())}>
         Logout
       </button>
-    </div>
+    </>
   );
 };
 

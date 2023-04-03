@@ -26,8 +26,9 @@ const App = () => {
   return (
     <Router>
       <div>
-        <Link to='/' />
-        <Link to='/users' />
+        <Link to='/'>Home</Link>
+        <Link to='/users'>Users</Link>
+        <UserInfo />
       </div>
 
       <Routes>
@@ -36,27 +37,14 @@ const App = () => {
           element={
             <div>
               <Notification />
+              <h1>Blog app</h1>
               {user ? <BlogSection /> : <LoginForm />}
             </div>
           }
         />
-        <Route
-          path='/users'
-          element={
-            <>
-              <UserInfo /> <Users />
-            </>
-          }
-        />
-        <Route
-          path='/users/:id'
-          element={
-            <>
-              <UserInfo /> <UserBlogs />
-            </>
-          }
-        />
-        <Route path='/blogs/:id' element={<Blog/>} />
+        <Route path='/users' element={<Users />} />
+        <Route path='/users/:id' element={<UserBlogs />} />
+        <Route path='/blogs/:id' element={<Blog />} />
       </Routes>
     </Router>
   );
