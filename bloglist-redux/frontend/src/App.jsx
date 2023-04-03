@@ -10,6 +10,7 @@ import BlogSection from './components/Blog/BlogSection';
 import Users from './components/User/Users';
 import UserBlogs from './components/User/UserBlogs';
 import UserInfo from './components/User/UserInfo';
+import Blog from './components/Blog/Blog';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -55,6 +56,7 @@ const App = () => {
             </>
           }
         />
+        <Route path='/blogs/:id' element={<Blog/>} />
       </Routes>
     </Router>
   );
