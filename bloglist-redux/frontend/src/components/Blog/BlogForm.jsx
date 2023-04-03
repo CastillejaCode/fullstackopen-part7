@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
-import { addBlog } from '../reducers/blogReducer';
-import { setNotification } from '../reducers/notificationReducer';
+import { addBlog } from '../../reducers/blogReducer';
+import { setNotification } from '../../reducers/notificationReducer';
 
 const BlogForm = ({ toggle }) => {
   const dispatch = useDispatch();

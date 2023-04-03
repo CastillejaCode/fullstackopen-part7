@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { logout } from '../reducers/userReducer';
+import { logout } from '../../reducers/userReducer';
 
 const UserInfo = () => {
   const dispatch = useDispatch();

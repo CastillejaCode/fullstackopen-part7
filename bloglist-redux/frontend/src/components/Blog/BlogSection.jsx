@@ -1,8 +1,8 @@
 import { useRef } from 'react';
-import Togglable from './Togglable';
+import Togglable from '../Togglable';
 import BlogForm from './BlogForm';
 import Blogs from './Blogs';
-import UserInfo from './UserInfo';
+import UserInfo from '../User/UserInfo';
 
 const BlogSection = () => {
   const newBlogRef = useRef();

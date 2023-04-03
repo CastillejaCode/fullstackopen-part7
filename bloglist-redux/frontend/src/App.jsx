@@ -6,8 +6,10 @@ import { initializeUser } from './reducers/userReducer';
 import { initializeUsers } from './reducers/usersReducer';
 import Notification from './components/Notification';
 import LoginForm from './components/LoginForm';
-import BlogSection from './components/BlogSection';
-import Users from './components/Users';
+import BlogSection from './components/Blog/BlogSection';
+import Users from './components/User/Users';
+import UserBlogs from './components/User/UserBlogs';
+import UserInfo from './components/User/UserInfo';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -37,7 +39,22 @@ const App = () => {
             </div>
           }
         />
-        <Route path='/users' element={<Users />} />
+        <Route
+          path='/users'
+          element={
+            <>
+              <UserInfo /> <Users />
+            </>
+          }
+        />
+        <Route
+          path='/users/:id'
+          element={
+            <>
+              <UserInfo /> <UserBlogs />
+            </>
+          }
+        />
       </Routes>
     </Router>
   );
