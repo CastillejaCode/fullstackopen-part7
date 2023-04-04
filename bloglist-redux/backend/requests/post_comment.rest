@@ -1,10 +1,7 @@
-POST http://localhost:3003/api/blogs 
+POST http://localhost:3003/api/blogs/642b86a97bbe69fd4ac714f0/comments
 Content-Type: application/json
 Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QyIiwiaWQiOiI2NDFhMmQ4NjA2MGEzOTQ5NzZjODY3MzYiLCJpYXQiOjE2ODA1NzM4NjV9.RrSfTqe5LULSTiy4L-XTX3l3sH4bsKBFmXCHW0EpDjg
 
 {
-    "title": "Another Test, Another Test",
-    "author": "Peanut", 
-    "url": "catbeans.com",
-    "likes": 20
+    "content":"test comment"
 }

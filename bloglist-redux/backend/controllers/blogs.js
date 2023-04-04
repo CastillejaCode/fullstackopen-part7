@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const blogsRouter = require('express').Router();
 const Blog = require('../models/blog');
 
@@ -13,9 +14,27 @@ blogsRouter.get('/:id', async (request, response) => {
 	response.json(blog);
 });
 
+blogsRouter.post('/:id/comments', async (request, response) => {
+	const blog = await Blog.findById(request.params.id);
+	const { content } = request.body;
+	blog.comments.push({
+		id: new mongoose.Types.ObjectId(),
+		content,
+	});
+	const newBlog = await Blog.findByIdAndUpdate(request.params.id, blog, {
+		new: true,
+	}).populate('user', {
+		username: 1,
+		name: 1,
+	});
+
+	response.status(200).json(newBlog);
+});
+
 blogsRouter.post('/', async (request, response) => {
 	if (!request.body.title || !request.body.author) response.status(400).end();
 	if (!request.body.likes) request.body.likes = 0;
+	if (!request.body.comments) request.body.comments = [];
 
 	const user = await request.user;
 	if (user === undefined)
