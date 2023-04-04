@@ -15,28 +15,37 @@ const LoginForm = () => {
 		}
 	};
 	return (
-		<div>
-			<h2>Log in to application</h2>
-			<form onSubmit={login}>
+		<div className=' flex flex-col justify-center'>
+			<form onSubmit={login} className='flex flex-col items-center'>
 				<div>
-					username
-					<input
-						type='text'
-						name='username'
-						// value={username}
-						// onChange={handleUsernameChange}
-					/>
+					<div className='mb-3 flex flex-col'>
+						username
+						<input
+							className='rounded-md border-2 border-gray-400'
+							type='text'
+							name='username'
+							// value={username}
+							// onChange={handleUsernameChange}
+						/>
+					</div>
 				</div>
 				<div>
-					password
-					<input
-						type='password'
-						name='password'
-						// value={password}
-						// onChange={handlePasswordChange}
-					/>
+					<div className='mb-3 flex flex-col'>
+						password
+						<input
+							className='rounded-md border-2 border-gray-400'
+							type='password'
+							name='password'
+							// value={password}
+							// onChange={handlePasswordChange}
+						/>
+					</div>
 				</div>
-				<button type='submit'>Login</button>
+				<button
+					type='submit'
+					className='w-fit rounded-md  bg-slate-600 px-3 py-1 text-xl text-gray-200 text-gray-900 shadow-md'>
+					Login
+				</button>
 			</form>
 		</div>
 	);

@@ -13,41 +13,56 @@ import UserInfo from './components/User/UserInfo';
 import Blog from './components/Blog/Blog';
 
 const App = () => {
-  const dispatch = useDispatch();
+	const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(initializeBlogs());
-    dispatch(initializeUser());
-    dispatch(initializeUsers());
-  }, []);
+	useEffect(() => {
+		dispatch(initializeBlogs());
+		dispatch(initializeUser());
+		dispatch(initializeUsers());
+	}, []);
 
-  const user = useSelector(({ user }) => user);
+	const user = useSelector(({ user }) => user);
 
-  return (
-    <Router>
-      <div>
-        <Link to='/'>Home</Link>
-        <Link to='/users'>Users</Link>
-        <UserInfo />
-      </div>
-
-      <Routes>
-        <Route
-          path='/'
-          element={
-            <div>
-              <Notification />
-              <h1>Blog app</h1>
-              {user ? <BlogSection /> : <LoginForm />}
-            </div>
-          }
-        />
-        <Route path='/users' element={<Users />} />
-        <Route path='/users/:id' element={<UserBlogs />} />
-        <Route path='/blogs/:id' element={<Blog />} />
-      </Routes>
-    </Router>
-  );
+	return (
+		<div className='flex flex-col items-center rounded-lg'>
+			<Router>
+				{user && (
+					<div className='flex '>
+						<div className='my-2 flex gap-3 text-lg'>
+							<Link
+								to='/'
+								className='rounded-md px-2 transition duration-200 ease-in-out hover:bg-slate-400'>
+								Home
+							</Link>
+							<Link
+								to='/users'
+								className='rounded-md px-2 transition duration-200 ease-in-out hover:bg-slate-400'>
+								Users
+							</Link>
+						</div>
+						<UserInfo />
+					</div>
+				)}
+				<Routes>
+					<Route
+						path='/'
+						element={
+							<div>
+								<h1 className='mb-6 text-center text-4xl text-gray-900'>
+									Blog app
+								</h1>
+								{user ? <BlogSection /> : <LoginForm />}
+							</div>
+						}
+					/>
+					<Route path='/users' element={<Users />} />
+					<Route path='/users/:id' element={<UserBlogs />} />
+					<Route path='/blogs/:id' element={<Blog />} />
+				</Routes>
+				<Notification />
+			</Router>
+		</div>
+	);
 };
 
 export default App;
